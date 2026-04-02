@@ -98,73 +98,7 @@ class HyperparametersConfig:
             self.positional_encoding_choices = ["absolute", "relative", "rotary", "alibi"]
         if self.layer_norm_type_choices is None:
             self.layer_norm_type_choices = ["layer_norm", "group_norm"]
-
-    def decode_one_hot(self, binary_vec: np.ndarray, param_name: str) -> Any:
-        """
-        Decode one-hot encoded parameter from binary vector.
-
-        Args:
-            binary_vec: Full binary solution vector
-            param_name: Name of parameter to decode
-
-        Returns:
-            Decoded parameter value
-        """
-        start, end = self.VAR_RANGES[param_name]
-        one_hot = binary_vec[start:end].astype(int)
-
-        # Get the index of the 1 (one-hot encoding)
-        if np.sum(one_hot) == 0:
-            # No bit set: use first option as default
-            idx = 0
-        else:
-            idx = np.argmax(one_hot)
-
-        # Map to parameter value
-        if param_name == "learning_rate":
-            return self.learning_rate_bins[idx]
-        elif param_name == "warmup_steps":
-            return self.warmup_steps_choices[idx]
-        elif param_name == "weight_decay":
-            return self.weight_decay_bins[idx]
-        elif param_name == "dropout_rate":
-            return self.dropout_rate_bins[idx]
-        elif param_name == "attention_heads":
-            return self.attention_heads_choices[idx]
-        elif param_name == "hidden_dim":
-            return self.hidden_dim_choices[idx]
-        elif param_name == "num_layers":
-            return self.num_layers_choices[idx]
-        elif param_name == "batch_size":
-            return self.batch_size_choices[idx]
-        elif param_name == "optimizer":
-            return self.optimizer_choices[idx]
-        elif param_name == "scheduler":
-            return self.scheduler_choices[idx]
-        elif param_name == "gradient_clipping":
-            return self.gradient_clipping_bins[idx]
-        elif param_name == "label_smoothing":
-            return self.label_smoothing_bins[idx]
-        elif param_name == "mixed_precision":
-            return self.mixed_precision_choices[idx]
-        elif param_name == "activation_function":
-            return self.activation_function_choices[idx]
-        elif param_name == "positional_encoding":
-            return self.positional_encoding_choices[idx]
-        elif param_name == "layer_norm_type":
-            return self.layer_norm_type_choices[idx]
-
-    def decode_solution(self, binary_vec: np.ndarray) -> Dict[str, Any]:
-        """
-        Decode full solution to hyperparameter configuration.
-
-        Args:
-            binary_vec: Binary solution vector (192 variables)
-
-        Returns:
-            Dictionary of decoded hyperparameter values
-        """
-        config = {}
-        for param_name in self.VAR_RANGES.keys():
-            config[param_name] = self.decode_one_hot(binary_vec, param_name)
-        return config
+def save_current_results(result): 
+    # Plot current best solution findings in SVG
+    svg_width = 800
+    svg_jR5SU5EMQSTTÕ5EM
