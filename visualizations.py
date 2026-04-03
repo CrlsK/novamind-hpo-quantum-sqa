@@ -7,9 +7,12 @@ Generates interactive charts in the 'additional_output' directory.
 
 from __future__ import annotations
 
+import logging
 import numpy as np
 import os
 from typing import Dict, List, Tuple, TYPE_CHECKING
+
+logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
     from qcentroid import SQAConfig, QuantumAnnealingSchedule
