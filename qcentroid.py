@@ -952,9 +952,9 @@ def run(
     }
 
     benchmark = {
-        "execution_cost": {"value": round(float(elapsed_time) * 0.001, 4), "unit": "credits"},
-        "time_elapsed": f"{float(elapsed_time):.2f}s",
-        "energy_consumption": 0.0,
+        "execution_cost": round(float(elapsed_time) * 0.001, 4),
+        "time_elapsed": round(float(elapsed_time), 2),
+        "energy_consumption": round(float(elapsed_time) * 0.001, 6),
     }
 
     # Generate visualizations (from separate module for maintainability)
